@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?xml-stylesheet type="text/css" href="styles.css" ?>   
-<svg xmlns="http://www.w3.org/2000/svg" id="us-map" width="959" height="593">
+<?xml-stylesheet type="text/css" href="styles.css" ?>
+<svg xmlns="http://www.w3.org/2000/svg" id="us-map"  align="center" width="500" height="500" preserveAspectRatio="xMinYMin meet" viewBox="0 0 900 600">
+<script type="text/javascript" src="script.js">
+  alert("hello world");
+</script> 
+  
+
 <title>Blank US states map</title>
 
 <g class="state">
