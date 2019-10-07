@@ -1,3 +1,8 @@
+//NOTE: must run chrome with this command: 
+//open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security
+//otherwise you cannot access svg through html due to CORS issue (cross origin)
+//this should stop being a problem once this is hosted on a web server (even a local server should work)
+
 window.onload = initAll;
 function initAll(){
     var mySVG = document.getElementById("map");
