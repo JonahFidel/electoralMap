@@ -11,3 +11,11 @@ path:hover, circle:hover {
   fill: #002868 !important;
   cursor: pointer;
 }
+
+/*#electoral-votes {
+  background-color: orange;
+  position: absolute;
+  color: black;
+  z-index: 2;
+  font-size:30px;
+}*/
