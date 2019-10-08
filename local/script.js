@@ -12,12 +12,25 @@ function initAll(){
   var alaska = svgDoc.getElementById("AK");
   console.log(alaska);
 
+
  var myMap = $('#map').get(0).getSVGDocument();
  var myPath = $(myMap).find("path, circle");
+
+ // var myPath;
+
+ // myMap.addEventListener("click", function(){
+ //  myPath = $(myMap).find("path");
+ //  console.log(myPath.data('info'));
+ // });
+
  $(myPath).hover(function(e) {
     $('#info-box').css('display','block');
     $('#info-box').html($(this).data('info'));
   });
+
+ $(myPath).click(function(e){
+  console.log($(this).data('info'));
+ });
 
   $(myPath).mouseleave(function(e) {
     $('#info-box').css('display','none');
@@ -38,6 +51,11 @@ function initAll(){
   }
 }
 
+
+
+function hawaii(){
+  console.log("clicked hawaii");
+}
 
 
 
