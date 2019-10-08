@@ -25,6 +25,11 @@
   font-size: 100px;
 }
 
+#stateName {
+  z-index: 3;
+  position: absolute;
+}
+
 /*path:hover, circle:hover {
   stroke: #002868 !important;
   stroke-width:2px;

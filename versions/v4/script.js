@@ -31,11 +31,8 @@ statesArray.forEach(function(state){
 
   var foreignObject = document.createElementNS( 'http://www.w3.org/2000/svg', 'foreignObject');
   var body = document.createElement('body'); // you cannot create bodies with .apend("<body />") for some reason
-  var statePath = svg.querySelector("#" + state);
-  console.log("sp   " + statePath);
-  var EV = $(statePath).data("other");
-  $(foreignObject).attr("x", (currState.getBoundingClientRect().x + currState.getBoundingClientRect().width/2)).attr("y", (currState.getBoundingClientRect().y + currState.getBoundingClientRect().height/2)).attr("width", 30).attr("height", 50).append(body);
-  $(body).append("<div>"+ state + "<br>" + EV + "</div>");
+  $(foreignObject).attr("x", (currState.getBoundingClientRect().x + currState.getBoundingClientRect().width/2)).attr("y", (currState.getBoundingClientRect().y + currState.getBoundingClientRect().height/2)).attr("width", 30).attr("height", 30).append(body);
+  $(body).append("<div>"+ state + "</div>");
   $(foreignObject).attr("id", "stateName");
   $(svg).append(foreignObject);
     // $(document.body).append("<foreignObject x=\"" + (currState.getBoundingClientRect().x + currState.getBoundingClientRect().width/2) + "\" y=\"" + (currState.getBoundingClientRect().y + currState.getBoundingClientRect().height/2) + "\" width=\"30\" height=\"30\" id=\"electoral-votes\"><div>" + state + "</div></foreignObject>");
