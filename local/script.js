@@ -17,9 +17,9 @@ function initAll(){
   console.log(alaska);
 
 
- var myMap = $('#map').get(0).getSVGDocument();
-console.log(myMap);
-console.log("svgDoc: " + svgDoc);
+  var myMap = $('#map').get(0).getSVGDocument();
+  console.log(myMap);
+  console.log("svgDoc: " + svgDoc);
 // console.log("asdlf " + myMap.getElementsByTagName('g')[0]);
 var sum = 0;
 var svg = myMap.querySelector('svg');
@@ -32,9 +32,27 @@ statesArray.forEach(function(state){
   var foreignObject = document.createElementNS( 'http://www.w3.org/2000/svg', 'foreignObject');
   var body = document.createElement('body'); // you cannot create bodies with .apend("<body />") for some reason
   var statePath = svg.querySelector("#" + state);
-  console.log("sp   " + statePath);
   var EV = $(statePath).data("other");
-  $(foreignObject).attr("x", (currState.getBoundingClientRect().x + currState.getBoundingClientRect().width/2)).attr("y", (currState.getBoundingClientRect().y + currState.getBoundingClientRect().height/2)).attr("width", 30).attr("height", 50).append(body);
+  $(foreignObject)
+    .attr("x", (currState.getBBox().x + currState.getBBox().width/2))
+    // .attr("x", function(d){
+    //   return statePath.centroid(d)[0];
+    // })
+    .attr("y", (currState.getBBox().y + currState.getBBox().height/2))
+    // .attr("y", function(d){
+    //   return statePath.centroid(d)[1];
+    // })
+    .attr("width", 30).attr("height", 50).append(body);
+
+
+
+
+  // .attr("x", function (d) {
+  //                   var new_x = statePath.centroid(d)[0] + parseInt(p.statePositions[d.properties.STATE + "x"]);
+  //                   if (!isNaN(new_x)) {
+  //                       return new_x;
+  //                   }
+  //               })
   $(body).append("<div>"+ state + "<br>" + EV + "</div>");
   $(foreignObject).attr("id", "stateName");
   $(svg).append(foreignObject);
@@ -62,7 +80,7 @@ statesArray.forEach(function(state){
 $(document.body).append("<div id=\"sum\">" + sum + "</div>");
 
 console.log(sum); //538!
- var myPath = $(myMap).find("path, circle");
+var myPath = $(myMap).find("path, circle");
 
  // var myPath;
 
@@ -72,33 +90,33 @@ console.log(sum); //538!
  // });
 
  $(myPath).hover(function(e) {
-    $('#info-box').css('display','block');
-    $('#info-box').html($(this).data('info'));
-  });
+  $('#info-box').css('display','block');
+  $('#info-box').html($(this).data('info'));
+});
 
  $(myPath).click(function(e){
   console.log($(this).data('info'));
   console.log($(this).data('other')); 
   console.log(e.pageX, e.pageY);
- });
+});
 
-  $(myPath).mouseleave(function(e) {
-    $('#info-box').css('display','none');
+ $(myPath).mouseleave(function(e) {
+  $('#info-box').css('display','none');
+});
+
+ $(myMap).mousemove(function(e) {
+  $('#info-box').css('top',e.pageY-$('#info-box').height()-30);
+  $('#info-box').css('left',e.pageX-($('#info-box').width())/2);
+}).mouseover();
+
+ var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+ if(ios) {
+  $('a').on('click touchend', function() {
+    var link = $(this).attr('href');
+    window.open(link,'_blank');
+    return false;
   });
-
-  $(myMap).mousemove(function(e) {
-    $('#info-box').css('top',e.pageY-$('#info-box').height()-30);
-    $('#info-box').css('left',e.pageX-($('#info-box').width())/2);
-  }).mouseover();
-
-  var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  if(ios) {
-    $('a').on('click touchend', function() {
-      var link = $(this).attr('href');
-      window.open(link,'_blank');
-      return false;
-    });
-  }
+}
 }
 
 
