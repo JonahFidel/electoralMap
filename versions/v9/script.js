@@ -44,52 +44,38 @@ function initAll(){
     var statePath = svg.querySelector("#" + state);
     var EV = $(statePath).data("other");
     var initialColor = $(statePath).data("color")
-    // console.log(initialColor);
+    console.log(initialColor);
     d3.select(currState).style('fill', colorsArray[initialColor]);
     var element = d3.select(currState).node();
     var bbox = element.getBBox();
 
     $(foreignObject)
     .attr("x", (bbox.x + bbox.width/2 - 15))
-      // .attr("x", function(d){
-      //   return statePath.centroid(d)[0];
-      // })
-      .attr("y", (bbox.y + bbox.height/2 - 25))
-      // .attr("y", function(d){
-      //   return statePath.centroid(d)[1];
-      // })
-      .attr("width", 30).attr("height", 50).append(body);
+        // .attr("x", function(d){
+        //   return statePath.centroid(d)[0];
+        // })
+        .attr("y", (bbox.y + bbox.height/2 - 25))
+        // .attr("y", function(d){
+        //   return statePath.centroid(d)[1];
+        // })
+        .attr("width", 30).attr("height", 50).append(body);
 
-      $(body).append("<div>"+ state + "<br>" + EV + "</div>");
-      $(foreignObject).attr("id", "stateName");
-      $(svg).append(foreignObject);
-      sum += parseInt($(currState).data('other'), 10);
+        $(body).append("<div>"+ state + "<br>" + EV + "</div>");
+        $(foreignObject).attr("id", "stateName");
+        $(svg).append(foreignObject);
+        sum += parseInt($(currState).data('other'), 10);
     });
   
-  var myPath = $(myMap).find("path, circle");
+    var myPath = $(myMap).find("path, circle");
 
-  $(myPath).click(function(e){
+    $(myPath).click(function(e){
+    // console.log($(this).data('info'));
+    // console.log($(this).data('other')); 
+    // console.log(e.pageX, e.pageY);
     console.log($(this).data('color'));
-    console.log(tinycolor.equals(this.style.fill, "rgb(255, 88, 101)"));
+    this.style.fill = "yellow";
 
-    var currStateColor = this.style.fill;
-    console.log(currStateColor);
-    if (tinycolor.equals(currStateColor, "rgb(255, 88, 101)")){ // Likely R --> Safe R
-      this.style.fill = "#D22532";
-    } else if (tinycolor.equals(currStateColor, "rgb(210, 37, 50)")){ // Safe R --> Safe D 
-      this.style.fill = "#244999";
-    } else if (tinycolor.equals(currStateColor, "rgb(36, 73, 153)")){ // Safe D --> Likely D
-      this.style.fill = "#577CCC";
-    } else if (tinycolor.equals(currStateColor, "rgb(87, 124, 204)")){ // Likely D --> Lean D
-      this.style.fill = "#8AAFFF";
-    } else if (tinycolor.equals(currStateColor, "rgb(138, 175, 255)")){ // Lean D --> Tossup
-      this.style.fill = "#9E8767";
-    } else if (tinycolor.equals(currStateColor, "rgb(158, 135, 103)")){ // Tossup --> Lean R
-      this.style.fill = "#FF8B98";
-    } else if (tinycolor.equals(currStateColor, "rgb(255, 139, 152)")){ // Lean R --> Likely R
-      this.style.fill = "#FF5865";
-    } 
-  });
+   });
 }
 
 

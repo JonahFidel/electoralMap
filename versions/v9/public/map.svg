@@ -157,7 +157,7 @@
     <g id="DC">
       <title>District of Columbia</title>
       <path id="DC1" d="M801.8 253.8l-1.1-1.6-1-.8 1.1-1.6 2.2 1.5z"/>
-      <circle id="DC2" data-color="safe_d" data-other="3" data-info="&lt;div&gt;Washington D.C.&lt;div/&gt;" stroke="#FFFFFF" stroke-width="1.5" cx="801.3" cy="251.8" r="5" opacity="1"/> <!-- Set opacity to "0" to hide DC circle -->
+      <circle id="DC2" data-other="3" data-info="&lt;div&gt;Washington D.C.&lt;div/&gt;" stroke="#FFFFFF" stroke-width="1.5" cx="801.3" cy="251.8" r="5" opacity="1"/> <!-- Set opacity to "0" to hide DC circle -->
       </g>
     </g>
     <path id="frames" fill="none" stroke="#A9A9A9" stroke-width="2" d="M215 493v55l36 45M0 425h147l68 68h85l54 54v46"/>
