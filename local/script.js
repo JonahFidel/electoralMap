@@ -6,6 +6,23 @@
 // State abbreviations + DC 
 var statesArray = ["AK", "HI", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY", "DC2"];
 
+// so many blues and reds
+var colorsArray = {
+  "tossup": "#9E8767", // Tan toss-up/undecided
+  "tilt_r": "#CF8980", // Tilt R
+  "lean_r": "#FF8B98", // Lean R
+  "likely_r": "#FF5865", // Likely R
+  "safe_r": "#D22532", // Safe R
+  "safe_d": "#244999", // Safe D
+  "likely_d": "#577CCC", // Likely D
+  "lean_d": "#8AAFFF", // Lean D
+  "tilt_d": "#949BB3", // Tilt D
+  "ind": "#CCAD29", // Independent yellow. (Green: 29D755)
+  "purple": "#800080",
+  "poll": "#DDDDDD"  // unpolled gray #CCC
+};
+
+
 window.onload = initAll;
 
 function initAll(){
@@ -16,8 +33,8 @@ function initAll(){
   var obj = document.getElementById("map");
   var objDoc = obj.contentDocument;
 
-  // var kentucky = objDoc.getElementById('KY');
-  // d3.select(kentucky).style('fill', 'red');
+  var kentucky = objDoc.getElementById('KY');
+  d3.select(kentucky).style('fill', colorsArray["lean_d"]);
 
   statesArray.forEach(function(state){
     var currState = objDoc.getElementById(state);
@@ -26,9 +43,11 @@ function initAll(){
     var body = document.createElement('body'); // you cannot create bodies with .append("<body />") for some reason
     var statePath = svg.querySelector("#" + state);
     var EV = $(statePath).data("other");
+    var initialColor = $(statePath).data("color")
+    console.log(initialColor);
+    d3.select(currState).style('fill', colorsArray[initialColor]);
     var element = d3.select(currState).node();
     var bbox = element.getBBox();
-    console.log(bbox);
 
     $(foreignObject)
     .attr("x", (bbox.x + bbox.width/2 - 15))
@@ -45,40 +64,18 @@ function initAll(){
         $(foreignObject).attr("id", "stateName");
         $(svg).append(foreignObject);
         sum += parseInt($(currState).data('other'), 10);
-      });
-
-  // $(document.body).append("<div id=\"sum\">" + sum + "</div>");
-
-  var myPath = $(myMap).find("path, circle");
-
-  $(myPath).hover(function(e) {
-    $('#info-box').css('display','block');
-    $('#info-box').html($(this).data('info'));
-  });
-
-  $(myPath).click(function(e){
-    console.log($(this).data('info'));
-    console.log($(this).data('other')); 
-    console.log(e.pageX, e.pageY);
-  });
-
-  $(myPath).mouseleave(function(e) {
-    $('#info-box').css('display','none');
-  });
-
-  $(myMap).mousemove(function(e) {
-    $('#info-box').css('top',e.pageY-$('#info-box').height()-30);
-    $('#info-box').css('left',e.pageX-($('#info-box').width())/2);
-  }).mouseover();
-
-  var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  if(ios) {
-    $('a').on('click touchend', function() {
-      var link = $(this).attr('href');
-      window.open(link,'_blank');
-      return false;
     });
-  }
+  
+   //  var myPath = $(myMap).find("path, circle");
+
+   //  $(myPath).click(function(e){
+   //  // console.log($(this).data('info'));
+   //  // console.log($(this).data('other')); 
+   //  // console.log(e.pageX, e.pageY);
+   //  console.log($(this).data('color'));
+   //  $(this).style('fill', 'yellow')
+
+   // });
 }
 
 
