@@ -32,6 +32,8 @@ function initAll(){
   var svg = myMap.querySelector('svg');
   var obj = document.getElementById("map");
   var objDoc = obj.contentDocument;
+  var demSum = 0;
+  var repSum = 0;
 
   var kentucky = objDoc.getElementById('KY');
   d3.select(kentucky).style('fill', colorsArray["lean_d"]);
@@ -44,6 +46,20 @@ function initAll(){
     var statePath = svg.querySelector("#" + state);
     var EV = $(statePath).data("other");
     var initialColor = $(statePath).data("color")
+
+    if (initialColor == "likely_r"){ // Likely R 
+      repSum += parseInt($(currState).data('other'), 10);
+    } else if (initialColor == "safe_r"){ // Safe R  
+      repSum += parseInt($(currState).data('other'), 10);
+    } else if (initialColor == "safe_d"){ // Safe D 
+      demSum += parseInt($(currState).data('other'), 10);
+    } else if (initialColor == "likely_d"){ // Likely D 
+      demSum += parseInt($(currState).data('other'), 10);
+    } else if (initialColor == "lean_d"){ // Lean D 
+      demSum += parseInt($(currState).data('other'), 10);
+    } else if (initialColor == "lean_r"){ // Lean R 
+      repSum += parseInt($(currState).data('other'), 10);
+    } 
     // console.log(initialColor);
     d3.select(currState).style('fill', colorsArray[initialColor]);
     var element = d3.select(currState).node();
@@ -65,6 +81,9 @@ function initAll(){
       $(svg).append(foreignObject);
       sum += parseInt($(currState).data('other'), 10);
     });
+
+  $(document.body).append("<div id=\"demSum\">DEM: " + demSum + "</div>");
+  $(document.body).append("<div id=\"repSum\">GOP: " + repSum + "</div>");
   
   var myPath = $(myMap).find("path, circle");
 
@@ -74,18 +93,28 @@ function initAll(){
 
     var currStateColor = this.style.fill;
     console.log(currStateColor);
+    demSumObj = document.getElementById("demSum");
+    repSumObj = document.getElementById("repSum");
     if (tinycolor.equals(currStateColor, "rgb(255, 88, 101)")){ // Likely R --> Safe R
       this.style.fill = "#D22532";
     } else if (tinycolor.equals(currStateColor, "rgb(210, 37, 50)")){ // Safe R --> Safe D 
       this.style.fill = "#244999";
+      repSum -= (parseInt(this.getAttribute('data-other')));
+      repSumObj.innerHTML = "<div id=\"repSum\">GOP: " + repSum + "</div>";
+      demSum += (parseInt(this.getAttribute('data-other')));
+      demSumObj.innerHTML = "<div id=\"demSum\">DEM: " + demSum + "</div>";
     } else if (tinycolor.equals(currStateColor, "rgb(36, 73, 153)")){ // Safe D --> Likely D
       this.style.fill = "#577CCC";
     } else if (tinycolor.equals(currStateColor, "rgb(87, 124, 204)")){ // Likely D --> Lean D
       this.style.fill = "#8AAFFF";
     } else if (tinycolor.equals(currStateColor, "rgb(138, 175, 255)")){ // Lean D --> Tossup
       this.style.fill = "#9E8767";
+      demSum -= (parseInt(this.getAttribute('data-other')));
+      demSumObj.innerHTML = "<div id=\"demSum\">DEM: " + demSum + "</div>";
     } else if (tinycolor.equals(currStateColor, "rgb(158, 135, 103)")){ // Tossup --> Lean R
       this.style.fill = "#FF8B98";
+      repSum += (parseInt(this.getAttribute('data-other')));
+      repSumObj.innerHTML = "<div id=\"repSum\">GOP: " + repSum + "</div>";
     } else if (tinycolor.equals(currStateColor, "rgb(255, 139, 152)")){ // Lean R --> Likely R
       this.style.fill = "#FF5865";
     } 

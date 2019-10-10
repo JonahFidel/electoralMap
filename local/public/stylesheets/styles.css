@@ -20,6 +20,8 @@
   float:center;
 }
 
-#sum {
+#demSum, #repSum {
   font-size: 100px;
+  float: right;
+  clear: both;
 }
