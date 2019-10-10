@@ -66,16 +66,16 @@ function initAll(){
         sum += parseInt($(currState).data('other'), 10);
     });
   
-    var myPath = $(myMap).find("path, circle");
+   //  var myPath = $(myMap).find("path, circle");
 
-    $(myPath).click(function(e){
-    // console.log($(this).data('info'));
-    // console.log($(this).data('other')); 
-    // console.log(e.pageX, e.pageY);
-    console.log($(this).data('color'));
-    this.style.fill = "yellow";
+   //  $(myPath).click(function(e){
+   //  // console.log($(this).data('info'));
+   //  // console.log($(this).data('other')); 
+   //  // console.log(e.pageX, e.pageY);
+   //  console.log($(this).data('color'));
+   //  $(this).style('fill', 'yellow')
 
-   });
+   // });
 }
 
 

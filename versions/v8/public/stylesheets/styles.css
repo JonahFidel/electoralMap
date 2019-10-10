@@ -1,0 +1,26 @@
+
+#info-box {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  background-color: #ffffff;
+  border: 2px solid #BF0A30;
+  border-radius: 5px;
+  padding: 5px;
+  font-family: arial;
+}
+
+#map {
+  position: absolute;
+  margin-top: 10px;
+  width: 1000px;
+  height: 600px;
+  z-index: -1;
+  float:center;
+}
+
+#sum {
+  font-size: 100px;
+}
