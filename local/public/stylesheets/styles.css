@@ -1,4 +1,8 @@
 
+h1 {
+  font-size: 100px;
+}
+
 #info-box {
   display: none;
   position: absolute;
