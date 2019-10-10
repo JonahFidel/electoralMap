@@ -47,7 +47,6 @@ function initAll(){
     var EV = $(statePath).data("other");
     var initialColor = $(statePath).data("color")
 
-    // TODO - get rid of redundant code
     if (initialColor == "likely_r"){ // Likely R 
       repSum += parseInt($(currState).data('other'), 10);
     } else if (initialColor == "safe_r"){ // Safe R  
@@ -96,8 +95,6 @@ function initAll(){
     console.log(currStateColor);
     demSumObj = document.getElementById("demSum");
     repSumObj = document.getElementById("repSum");
-
-    // TODO: clean this up  
     if (tinycolor.equals(currStateColor, "rgb(255, 88, 101)")){ // Likely R --> Safe R
       this.style.fill = "#D22532";
     } else if (tinycolor.equals(currStateColor, "rgb(210, 37, 50)")){ // Safe R --> Safe D 
