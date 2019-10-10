@@ -1,0 +1,17 @@
+.state {fill:#D3D3D3;}
+
+/*#FL { fill: orange !important }
+#KS, #MT, #PA {fill:#0000FF;}
+#TX {fill: red;}
+*/
+
+path:hover, circle:hover {
+  cursor: pointer;
+}
+
+#stateName {
+  position: absolute;
+  color: black;
+  font-size:16px;
+  z-index: 2;
+}
