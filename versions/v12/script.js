@@ -131,7 +131,6 @@ function initAll(){
     // TODO: clean this up  
     // too much redundant code
     // should implement shared function for this and init too with counting EVs
-    // dash case for IDs
     if (tinycolor.equals(currStateColor, "rgb(255, 88, 101)")){ // Likely R --> Safe R
       this.style.fill = "#D22532";
 
