@@ -34,6 +34,13 @@ function initAll(){
   var objDoc = obj.contentDocument;
   var demSum = 0;
   var repSum = 0;
+  var leanRepSum = 0;
+  var likRepSum = 0; 
+  var solRepSum = 0;
+  var tossupSum = 0;
+  var leanDemSum = 0; 
+  var likDemSum = 0; 
+  var solDemSum = 0;
 
   var kentucky = objDoc.getElementById('KY');
   d3.select(kentucky).style('fill', colorsArray["lean_d"]);
@@ -46,21 +53,30 @@ function initAll(){
     var statePath = svg.querySelector("#" + state);
     var EV = $(statePath).data("other");
     var initialColor = $(statePath).data("color")
+    var voteCount = parseInt($(currState).data('other'), 10);
 
     // TODO - get rid of redundant code
     if (initialColor == "likely_r"){ // Likely R 
-      repSum += parseInt($(currState).data('other'), 10);
+      repSum += voteCount;
+      likRepSum += voteCount;
     } else if (initialColor == "safe_r"){ // Safe R  
-      repSum += parseInt($(currState).data('other'), 10);
+      repSum += voteCount;
+      solRepSum += voteCount;
     } else if (initialColor == "safe_d"){ // Safe D 
-      demSum += parseInt($(currState).data('other'), 10);
+      demSum += voteCount;
+      solDemSum += voteCount;
     } else if (initialColor == "likely_d"){ // Likely D 
-      demSum += parseInt($(currState).data('other'), 10);
+      demSum += voteCount;
+      likDemSum += voteCount;
     } else if (initialColor == "lean_d"){ // Lean D 
-      demSum += parseInt($(currState).data('other'), 10);
+      demSum += voteCount;
+      leanDemSum += voteCount;
     } else if (initialColor == "lean_r"){ // Lean R 
-      repSum += parseInt($(currState).data('other'), 10);
-    } 
+      repSum += voteCount;
+      leanRepSum += voteCount;
+    } else {
+      tossupSum += voteCount;
+    }
     // console.log(initialColor);
     d3.select(currState).style('fill', colorsArray[initialColor]);
     var element = d3.select(currState).node();
@@ -85,6 +101,13 @@ function initAll(){
 
   $(document.body).append("<div id=\"demSum\">DEM: " + demSum + "</div>");
   $(document.body).append("<div id=\"repSum\">GOP: " + repSum + "</div>");
+  $(document.body).append("<div id=\"leanRepSum\">lean GOP: " + leanRepSum + "</div>");
+  $(document.body).append("<div id=\"likRepSum\">likely GOP: " + likRepSum + "</div>");
+  $(document.body).append("<div id=\"solRepSum\">solid GOP: " + solRepSum + "</div>");
+  $(document.body).append("<div id=\"leanDemSum\">lean DEM: " + leanDemSum + "</div>");
+  $(document.body).append("<div id=\"likDemSum\">likely DEM: " + likDemSum + "</div>");
+  $(document.body).append("<div id=\"solDemSum\">solid DEM: " + solDemSum + "</div>");
+  $(document.body).append("<div id=\"tossup\">tossup: " + tossupSum + "</div>");
   
   var myPath = $(myMap).find("path, circle");
 
@@ -96,30 +119,93 @@ function initAll(){
     console.log(currStateColor);
     demSumObj = document.getElementById("demSum");
     repSumObj = document.getElementById("repSum");
+    leanDemSumObj = document.getElementById("leanDemSum");
+    likDemSumObj = document.getElementById("likDemSum");
+    solDemSumObj = document.getElementById("solDemSum");
+    leanRepSumObj = document.getElementById("leanRepSum");
+    likRepSumObj = document.getElementById("likRepSum");
+    solRepSumObj = document.getElementById("solRepSum");
+    tossupObj = document.getElementById("tossup");
+
 
     // TODO: clean this up  
+    // too much redundant code
+    // should implement shared function for this and init too with counting EVs
     if (tinycolor.equals(currStateColor, "rgb(255, 88, 101)")){ // Likely R --> Safe R
       this.style.fill = "#D22532";
-    } else if (tinycolor.equals(currStateColor, "rgb(210, 37, 50)")){ // Safe R --> Safe D 
+
+      likRepSum -= parseInt(this.getAttribute('data-other'));
+      likRepSumObj.innerHTML = "<div id=\"likRepSum\">likely GOP: " + likRepSum + "</div>";
+      solRepSum += parseInt(this.getAttribute('data-other'));
+      solRepSumObj.innerHTML = "<div id=\"solRepSum\">solid GOP: " + solRepSum + "</div>";
+
+    } 
+
+    else if (tinycolor.equals(currStateColor, "rgb(210, 37, 50)")){ // Safe R --> Safe D 
       this.style.fill = "#244999";
-      repSum -= (parseInt(this.getAttribute('data-other')));
+
+      repSum -= parseInt(this.getAttribute('data-other'));
+      solRepSum -= parseInt(this.getAttribute('data-other'));
+
       repSumObj.innerHTML = "<div id=\"repSum\">GOP: " + repSum + "</div>";
-      demSum += (parseInt(this.getAttribute('data-other')));
+      solRepSumObj.innerHTML = "<div id=\"solRepSum\">solid GOP: " + solRepSum + "</div>";
+
+      demSum += parseInt(this.getAttribute('data-other'));
+      solDemSum += parseInt(this.getAttribute('data-other'));
+
       demSumObj.innerHTML = "<div id=\"demSum\">DEM: " + demSum + "</div>";
-    } else if (tinycolor.equals(currStateColor, "rgb(36, 73, 153)")){ // Safe D --> Likely D
+      solDemSumObj.innerHTML = "<div id=\"solDemSum\">solid DEM: " + solDemSum + "</div>";
+    } 
+
+    else if (tinycolor.equals(currStateColor, "rgb(36, 73, 153)")){ // Safe D --> Likely D
       this.style.fill = "#577CCC";
-    } else if (tinycolor.equals(currStateColor, "rgb(87, 124, 204)")){ // Likely D --> Lean D
+      solDemSum -= parseInt(this.getAttribute('data-other'));
+      solDemSumObj.innerHTML = "<div id=\"solDemSum\">solid DEM: " + solDemSum + "</div>";
+      likDemSum += parseInt(this.getAttribute('data-other'));
+      likDemSumObj.innerHTML = "<div id=\"likDemSum\">likely DEM: " + likDemSum + "</div>";
+    } 
+
+    else if (tinycolor.equals(currStateColor, "rgb(87, 124, 204)")){ // Likely D --> Lean D
       this.style.fill = "#8AAFFF";
-    } else if (tinycolor.equals(currStateColor, "rgb(138, 175, 255)")){ // Lean D --> Tossup
+      likDemSum -= parseInt(this.getAttribute('data-other'));
+      likDemSumObj.innerHTML = "<div id=\"likDemSum\">likely DEM: " + likDemSum + "</div>";
+
+      leanDemSum += parseInt(this.getAttribute('data-other'));
+      leanDemSumObj.innerHTML = "<div id=\"leanDemSum\">lean DEM: " + leanDemSum + "</div>";
+    } 
+
+    else if (tinycolor.equals(currStateColor, "rgb(138, 175, 255)")){ // Lean D --> Tossup
       this.style.fill = "#9E8767";
-      demSum -= (parseInt(this.getAttribute('data-other')));
+      demSum -= parseInt(this.getAttribute('data-other'));
       demSumObj.innerHTML = "<div id=\"demSum\">DEM: " + demSum + "</div>";
-    } else if (tinycolor.equals(currStateColor, "rgb(158, 135, 103)")){ // Tossup --> Lean R
+
+      tossupSum += parseInt(this.getAttribute('data-other'));
+      tossupObj.innerHTML = "<div id=\"tossupSum\">tossup: " + tossupSum + "</div>";
+
+      leanDemSum -= parseInt(this.getAttribute('data-other'));
+      leanDemSumObj.innerHTML = "<div id=\"leanDemSum\">lean DEM: " + leanDemSum + "</div>";
+    } 
+
+    else if (tinycolor.equals(currStateColor, "rgb(158, 135, 103)")){ // Tossup --> Lean R
       this.style.fill = "#FF8B98";
-      repSum += (parseInt(this.getAttribute('data-other')));
+      repSum += parseInt(this.getAttribute('data-other'));
       repSumObj.innerHTML = "<div id=\"repSum\">GOP: " + repSum + "</div>";
-    } else if (tinycolor.equals(currStateColor, "rgb(255, 139, 152)")){ // Lean R --> Likely R
+
+      tossupSum -= parseInt(this.getAttribute('data-other'));
+      tossupObj.innerHTML = "<div id=\"tossupSum\">tossup: " + tossupSum + "</div>";
+
+      leanRepSum += parseInt(this.getAttribute('data-other'));
+      leanRepSumObj.innerHTML = "<div id=\"leanRepSum\">lean GOP: " + leanRepSum + "</div>";
+    } 
+
+    else if (tinycolor.equals(currStateColor, "rgb(255, 139, 152)")){ // Lean R --> Likely R
       this.style.fill = "#FF5865";
+
+      leanRepSum -= parseInt(this.getAttribute('data-other'));
+      leanRepSumObj.innerHTML = "<div id=\"leanRepSum\">lean GOP: " + leanRepSum + "</div>";
+
+      likRepSum += parseInt(this.getAttribute('data-other'));
+      likRepSumObj.innerHTML = "<div id=\"likRepSum\">likely GOP: " + likRepSum + "</div>";
     } 
   });
 }
