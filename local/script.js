@@ -476,6 +476,15 @@ function initAll(){
   });
 }
 
+// next step: do something like this
+// (leanRepPercentage > 0) ? $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%") : $(leanRepBar).remove();
+//     (likRepPercentage > 0) ? $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%") : $(likRepBar).remove();
+//     (solRepPercentage > 0) ? $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%") : $(solRepBar.remove();
+//     (leanDemPercentage > 0) ? $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%"): $(leanDemBar).remove();
+//     (likDemPercentage > 0) ? $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%"): $(likDemBar).remove();
+//     (solDemPercentage > 0) ? $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%"): $(solDemBar).remove();
+//     (tossupPercentage > 0) ? $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%"): $(tossupBar).remove();
+
 
 
 
