@@ -3,6 +3,21 @@
 //otherwise you cannot access svg through html due to CORS issue (cross origin)
 //this should stop being a problem once this is hosted on a web server (even a local server should work)
 
+// next steps: 
+  // - clean up this code!!!!!!
+    // keep another "messy" version to look at later
+
+// fix the divide by zero bug on the bar 
+  // code snippet at bottom of this w/idea of how to do this 
+
+//slideshow of versions 
+
+// get rid of counters in bottom left 
+
+// host 
+
+// check hosted, local version of hosted, and mobile version of hosted for bugs
+
 // State abbreviations + DC 
 var statesArray = ["AK", "HI", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY", "DC2"];
 

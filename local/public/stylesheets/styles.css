@@ -35,6 +35,7 @@ h1 {
   display: block;
   float: left;
   clear: both;
+  display: none;
 }
 
 /*can probably do all of this from the js side*/
