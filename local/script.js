@@ -211,6 +211,8 @@ function initAll(){
 
 
     // this works, need to do it for the rest of them... going to clean up the rest of the code first 
+    // IMPORTANT
+    // need to also flip the display back on when the sum goes above zero again
     if (leanRepPercentage > 0) {
       $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%")
     }  else {
