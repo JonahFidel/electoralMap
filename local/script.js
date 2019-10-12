@@ -18,6 +18,10 @@
 
 // check hosted, local version of hosted, and mobile version of hosted for bugs
 
+// change everything top jquery, no vanilla js for dom manipulation
+
+// make svg responsive
+
 // State abbreviations + DC 
 var statesArray = ["AK", "HI", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY", "DC2"];
 
@@ -205,7 +209,13 @@ function initAll(){
     var solDemBar = document.getElementsByClassName("sol-dem-bar");
     var tossupBar = document.getElementsByClassName("tossup-bar");
 
-    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+
+    // this works, need to do it for the rest of them... going to clean up the rest of the code first 
+    if (leanRepPercentage > 0) {
+      $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%")
+    }  else {
+      $(leanRepBar).css("display", "none");
+    }
     $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
     $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
     $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
@@ -255,7 +265,11 @@ function initAll(){
     var solDemBar = document.getElementsByClassName("sol-dem-bar");
     var tossupBar = document.getElementsByClassName("tossup-bar");
 
-    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+   if (leanRepPercentage > 0) {
+      $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%")
+    }  else {
+      $(leanRepBar).css("display", "none");
+    }
     $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
     $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
     $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
@@ -296,7 +310,11 @@ function initAll(){
     var solDemBar = document.getElementsByClassName("sol-dem-bar");
     var tossupBar = document.getElementsByClassName("tossup-bar");
 
-    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    if (leanRepPercentage > 0) {
+      $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%")
+    }  else {
+      $(leanRepBar).css("display", "none");
+    }
     $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
     $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
     $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
@@ -338,7 +356,11 @@ function initAll(){
     var solDemBar = document.getElementsByClassName("sol-dem-bar");
     var tossupBar = document.getElementsByClassName("tossup-bar");
 
-    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    if (leanRepPercentage > 0) {
+      $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%")
+    }  else {
+      $(leanRepBar).css("display", "none");
+    }
     $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
     $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
     $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
@@ -383,7 +405,12 @@ function initAll(){
     var solDemBar = document.getElementsByClassName("sol-dem-bar");
     var tossupBar = document.getElementsByClassName("tossup-bar");
 
-    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+
+if (leanRepPercentage > 0) {
+      $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%")
+    }  else {
+      $(leanRepBar).css("display", "none");
+    }
     $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
     $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
     $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
@@ -428,7 +455,11 @@ function initAll(){
     var solDemBar = document.getElementsByClassName("sol-dem-bar");
     var tossupBar = document.getElementsByClassName("tossup-bar");
 
-    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    if (leanRepPercentage > 0) {
+      $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%")
+    }  else {
+      $(leanRepBar).css("display", "none");
+    }
     $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
     $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
     $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
@@ -471,7 +502,11 @@ function initAll(){
     var solDemBar = document.getElementsByClassName("sol-dem-bar");
     var tossupBar = document.getElementsByClassName("tossup-bar");
 
-    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    if (leanRepPercentage > 0) {
+      $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%")
+    }  else {
+      $(leanRepBar).css("display", "none");
+    }
     $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
     $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
     $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
@@ -490,16 +525,3 @@ function initAll(){
     } 
   });
 }
-
-// next step: do something like this
-// (leanRepPercentage > 0) ? $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%") : $(leanRepBar).remove();
-//     (likRepPercentage > 0) ? $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%") : $(likRepBar).remove();
-//     (solRepPercentage > 0) ? $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%") : $(solRepBar.remove();
-//     (leanDemPercentage > 0) ? $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%"): $(leanDemBar).remove();
-//     (likDemPercentage > 0) ? $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%"): $(likDemBar).remove();
-//     (solDemPercentage > 0) ? $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%"): $(solDemBar).remove();
-//     (tossupPercentage > 0) ? $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%"): $(tossupBar).remove();
-
-
-
-
