@@ -28,6 +28,7 @@ window.onload = initAll;
 function initAll(){
   var myMap = $('#map').get(0).getSVGDocument();
 
+  var totalElectoralVotes = 538;
   var sum = 0;
   var svg = myMap.querySelector('svg');
   var obj = document.getElementById("map");
@@ -77,6 +78,39 @@ function initAll(){
     } else {
       tossupSum += voteCount;
     }
+
+    var leanRepPercentage = leanRepSum > 0 ? leanRepSum/totalElectoralVotes : 0;
+    var likRepPercentage = likRepSum > 0 ? likRepSum/totalElectoralVotes : 0;
+    var solRepPercentage = solRepSum > 0 ? solRepSum/totalElectoralVotes : 0;
+    var leanDemPercentage = leanDemSum > 0 ? leanDemSum/totalElectoralVotes : 0;
+    var likDemPercentage = likDemSum > 0 ? likDemSum/totalElectoralVotes : 0;
+    var solDemPercentage = solDemSum > 0 ? solDemSum/totalElectoralVotes : 0;
+    var tossupPercentage = tossupSum > 0 ? tossupSum/totalElectoralVotes : 0;
+
+    var leanRepBar = document.getElementsByClassName("lean-rep-bar");
+    var likRepBar = document.getElementsByClassName("lik-rep-bar");
+    var solRepBar = document.getElementsByClassName("sol-rep-bar");
+    var leanDemBar = document.getElementsByClassName("lean-dem-bar");
+    var likDemBar = document.getElementsByClassName("lik-dem-bar");
+    var solDemBar = document.getElementsByClassName("sol-dem-bar");
+    var tossupBar = document.getElementsByClassName("tossup-bar");
+
+    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
+    $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
+    $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
+    $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%");
+    $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%");
+    $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%");
+
+    $(leanRepBar).html(leanRepSum);  
+    $(likRepBar).html(likRepSum);  
+    $(solRepBar).html(solRepSum);  
+    $(leanDemBar).html(leanDemSum);  
+    $(likDemBar).html(likDemSum);  
+    $(solDemBar).html(solDemSum);  
+    $(tossupBar).html(tossupSum);  
+
     // console.log(initialColor);
     d3.select(currState).style('fill', colorsArray[initialColor]);
     var element = d3.select(currState).node();
@@ -140,6 +174,39 @@ function initAll(){
       solRepSum += parseInt(this.getAttribute('data-other'));
       solRepSumObj.innerHTML = "<div id=\"solRepSum\">solid GOP: " + solRepSum + "</div>";
 
+        var leanRepPercentage = leanRepSum > 0 ? leanRepSum/totalElectoralVotes : 0;
+    var likRepPercentage = likRepSum > 0 ? likRepSum/totalElectoralVotes : 0;
+    var solRepPercentage = solRepSum > 0 ? solRepSum/totalElectoralVotes : 0;
+    var leanDemPercentage = leanDemSum > 0 ? leanDemSum/totalElectoralVotes : 0;
+    var likDemPercentage = likDemSum > 0 ? likDemSum/totalElectoralVotes : 0;
+    var solDemPercentage = solDemSum > 0 ? solDemSum/totalElectoralVotes : 0;
+    var tossupPercentage = tossupSum > 0 ? tossupSum/totalElectoralVotes : 0;
+
+    var leanRepBar = document.getElementsByClassName("lean-rep-bar");
+    var likRepBar = document.getElementsByClassName("lik-rep-bar");
+    var solRepBar = document.getElementsByClassName("sol-rep-bar");
+    var leanDemBar = document.getElementsByClassName("lean-dem-bar");
+    var likDemBar = document.getElementsByClassName("lik-dem-bar");
+    var solDemBar = document.getElementsByClassName("sol-dem-bar");
+    var tossupBar = document.getElementsByClassName("tossup-bar");
+
+    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
+    $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
+    $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
+    $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%");
+    $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%");
+    $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%");
+
+    $(leanRepBar).html(leanRepSum);  
+    $(likRepBar).html(likRepSum);  
+    $(solRepBar).html(solRepSum);  
+    $(leanDemBar).html(leanDemSum);  
+    $(likDemBar).html(likDemSum);  
+    $(solDemBar).html(solDemSum);  
+    $(tossupBar).html(tossupSum);  
+
+
     } 
 
     else if (tinycolor.equals(currStateColor, "rgb(210, 37, 50)")){ // Safe R --> Safe D 
@@ -156,6 +223,39 @@ function initAll(){
 
       demSumObj.innerHTML = "<div id=\"demSum\">DEM: " + demSum + "</div>";
       solDemSumObj.innerHTML = "<div id=\"solDemSum\">solid DEM: " + solDemSum + "</div>";
+
+        var leanRepPercentage = leanRepSum > 0 ? leanRepSum/totalElectoralVotes : 0;
+    var likRepPercentage = likRepSum > 0 ? likRepSum/totalElectoralVotes : 0;
+    var solRepPercentage = solRepSum > 0 ? solRepSum/totalElectoralVotes : 0;
+    var leanDemPercentage = leanDemSum > 0 ? leanDemSum/totalElectoralVotes : 0;
+    var likDemPercentage = likDemSum > 0 ? likDemSum/totalElectoralVotes : 0;
+    var solDemPercentage = solDemSum > 0 ? solDemSum/totalElectoralVotes : 0;
+    var tossupPercentage = tossupSum > 0 ? tossupSum/totalElectoralVotes : 0;
+
+    var leanRepBar = document.getElementsByClassName("lean-rep-bar");
+    var likRepBar = document.getElementsByClassName("lik-rep-bar");
+    var solRepBar = document.getElementsByClassName("sol-rep-bar");
+    var leanDemBar = document.getElementsByClassName("lean-dem-bar");
+    var likDemBar = document.getElementsByClassName("lik-dem-bar");
+    var solDemBar = document.getElementsByClassName("sol-dem-bar");
+    var tossupBar = document.getElementsByClassName("tossup-bar");
+
+    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
+    $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
+    $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
+    $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%");
+    $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%");
+    $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%");
+
+    $(leanRepBar).html(leanRepSum);  
+    $(likRepBar).html(likRepSum);  
+    $(solRepBar).html(solRepSum);  
+    $(leanDemBar).html(leanDemSum);  
+    $(likDemBar).html(likDemSum);  
+    $(solDemBar).html(solDemSum);  
+    $(tossupBar).html(tossupSum);  
+
     } 
 
     else if (tinycolor.equals(currStateColor, "rgb(36, 73, 153)")){ // Safe D --> Likely D
@@ -164,6 +264,39 @@ function initAll(){
       solDemSumObj.innerHTML = "<div id=\"solDemSum\">solid DEM: " + solDemSum + "</div>";
       likDemSum += parseInt(this.getAttribute('data-other'));
       likDemSumObj.innerHTML = "<div id=\"likDemSum\">likely DEM: " + likDemSum + "</div>";
+
+        var leanRepPercentage = leanRepSum > 0 ? leanRepSum/totalElectoralVotes : 0;
+    var likRepPercentage = likRepSum > 0 ? likRepSum/totalElectoralVotes : 0;
+    var solRepPercentage = solRepSum > 0 ? solRepSum/totalElectoralVotes : 0;
+    var leanDemPercentage = leanDemSum > 0 ? leanDemSum/totalElectoralVotes : 0;
+    var likDemPercentage = likDemSum > 0 ? likDemSum/totalElectoralVotes : 0;
+    var solDemPercentage = solDemSum > 0 ? solDemSum/totalElectoralVotes : 0;
+    var tossupPercentage = tossupSum > 0 ? tossupSum/totalElectoralVotes : 0;
+
+    var leanRepBar = document.getElementsByClassName("lean-rep-bar");
+    var likRepBar = document.getElementsByClassName("lik-rep-bar");
+    var solRepBar = document.getElementsByClassName("sol-rep-bar");
+    var leanDemBar = document.getElementsByClassName("lean-dem-bar");
+    var likDemBar = document.getElementsByClassName("lik-dem-bar");
+    var solDemBar = document.getElementsByClassName("sol-dem-bar");
+    var tossupBar = document.getElementsByClassName("tossup-bar");
+
+    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
+    $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
+    $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
+    $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%");
+    $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%");
+    $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%");
+
+    $(leanRepBar).html(leanRepSum);  
+    $(likRepBar).html(likRepSum);  
+    $(solRepBar).html(solRepSum);  
+    $(leanDemBar).html(leanDemSum);  
+    $(likDemBar).html(likDemSum);  
+    $(solDemBar).html(solDemSum);  
+    $(tossupBar).html(tossupSum);  
+
     } 
 
     else if (tinycolor.equals(currStateColor, "rgb(87, 124, 204)")){ // Likely D --> Lean D
@@ -173,6 +306,39 @@ function initAll(){
 
       leanDemSum += parseInt(this.getAttribute('data-other'));
       leanDemSumObj.innerHTML = "<div id=\"leanDemSum\">lean DEM: " + leanDemSum + "</div>";
+
+        var leanRepPercentage = leanRepSum > 0 ? leanRepSum/totalElectoralVotes : 0;
+    var likRepPercentage = likRepSum > 0 ? likRepSum/totalElectoralVotes : 0;
+    var solRepPercentage = solRepSum > 0 ? solRepSum/totalElectoralVotes : 0;
+    var leanDemPercentage = leanDemSum > 0 ? leanDemSum/totalElectoralVotes : 0;
+    var likDemPercentage = likDemSum > 0 ? likDemSum/totalElectoralVotes : 0;
+    var solDemPercentage = solDemSum > 0 ? solDemSum/totalElectoralVotes : 0;
+    var tossupPercentage = tossupSum > 0 ? tossupSum/totalElectoralVotes : 0;
+
+    var leanRepBar = document.getElementsByClassName("lean-rep-bar");
+    var likRepBar = document.getElementsByClassName("lik-rep-bar");
+    var solRepBar = document.getElementsByClassName("sol-rep-bar");
+    var leanDemBar = document.getElementsByClassName("lean-dem-bar");
+    var likDemBar = document.getElementsByClassName("lik-dem-bar");
+    var solDemBar = document.getElementsByClassName("sol-dem-bar");
+    var tossupBar = document.getElementsByClassName("tossup-bar");
+
+    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
+    $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
+    $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
+    $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%");
+    $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%");
+    $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%");
+
+    $(leanRepBar).html(leanRepSum);  
+    $(likRepBar).html(likRepSum);  
+    $(solRepBar).html(solRepSum);  
+    $(leanDemBar).html(leanDemSum);  
+    $(likDemBar).html(likDemSum);  
+    $(solDemBar).html(solDemSum);  
+    $(tossupBar).html(tossupSum);  
+
     } 
 
     else if (tinycolor.equals(currStateColor, "rgb(138, 175, 255)")){ // Lean D --> Tossup
@@ -185,6 +351,39 @@ function initAll(){
 
       leanDemSum -= parseInt(this.getAttribute('data-other'));
       leanDemSumObj.innerHTML = "<div id=\"leanDemSum\">lean DEM: " + leanDemSum + "</div>";
+
+        var leanRepPercentage = leanRepSum > 0 ? leanRepSum/totalElectoralVotes : 0;
+    var likRepPercentage = likRepSum > 0 ? likRepSum/totalElectoralVotes : 0;
+    var solRepPercentage = solRepSum > 0 ? solRepSum/totalElectoralVotes : 0;
+    var leanDemPercentage = leanDemSum > 0 ? leanDemSum/totalElectoralVotes : 0;
+    var likDemPercentage = likDemSum > 0 ? likDemSum/totalElectoralVotes : 0;
+    var solDemPercentage = solDemSum > 0 ? solDemSum/totalElectoralVotes : 0;
+    var tossupPercentage = tossupSum > 0 ? tossupSum/totalElectoralVotes : 0;
+
+    var leanRepBar = document.getElementsByClassName("lean-rep-bar");
+    var likRepBar = document.getElementsByClassName("lik-rep-bar");
+    var solRepBar = document.getElementsByClassName("sol-rep-bar");
+    var leanDemBar = document.getElementsByClassName("lean-dem-bar");
+    var likDemBar = document.getElementsByClassName("lik-dem-bar");
+    var solDemBar = document.getElementsByClassName("sol-dem-bar");
+    var tossupBar = document.getElementsByClassName("tossup-bar");
+
+    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
+    $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
+    $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
+    $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%");
+    $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%");
+    $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%");
+
+    $(leanRepBar).html(leanRepSum);  
+    $(likRepBar).html(likRepSum);  
+    $(solRepBar).html(solRepSum);  
+    $(leanDemBar).html(leanDemSum);  
+    $(likDemBar).html(likDemSum);  
+    $(solDemBar).html(solDemSum);  
+    $(tossupBar).html(tossupSum);  
+
     } 
 
     else if (tinycolor.equals(currStateColor, "rgb(158, 135, 103)")){ // Tossup --> Lean R
@@ -197,6 +396,39 @@ function initAll(){
 
       leanRepSum += parseInt(this.getAttribute('data-other'));
       leanRepSumObj.innerHTML = "<div id=\"leanRepSum\">lean GOP: " + leanRepSum + "</div>";
+
+        var leanRepPercentage = leanRepSum > 0 ? leanRepSum/totalElectoralVotes : 0;
+    var likRepPercentage = likRepSum > 0 ? likRepSum/totalElectoralVotes : 0;
+    var solRepPercentage = solRepSum > 0 ? solRepSum/totalElectoralVotes : 0;
+    var leanDemPercentage = leanDemSum > 0 ? leanDemSum/totalElectoralVotes : 0;
+    var likDemPercentage = likDemSum > 0 ? likDemSum/totalElectoralVotes : 0;
+    var solDemPercentage = solDemSum > 0 ? solDemSum/totalElectoralVotes : 0;
+    var tossupPercentage = tossupSum > 0 ? tossupSum/totalElectoralVotes : 0;
+
+    var leanRepBar = document.getElementsByClassName("lean-rep-bar");
+    var likRepBar = document.getElementsByClassName("lik-rep-bar");
+    var solRepBar = document.getElementsByClassName("sol-rep-bar");
+    var leanDemBar = document.getElementsByClassName("lean-dem-bar");
+    var likDemBar = document.getElementsByClassName("lik-dem-bar");
+    var solDemBar = document.getElementsByClassName("sol-dem-bar");
+    var tossupBar = document.getElementsByClassName("tossup-bar");
+
+    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
+    $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
+    $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
+    $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%");
+    $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%");
+    $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%");
+
+    $(leanRepBar).html(leanRepSum);  
+    $(likRepBar).html(likRepSum);  
+    $(solRepBar).html(solRepSum);  
+    $(leanDemBar).html(leanDemSum);  
+    $(likDemBar).html(likDemSum);  
+    $(solDemBar).html(solDemSum);  
+    $(tossupBar).html(tossupSum);  
+
     } 
 
     else if (tinycolor.equals(currStateColor, "rgb(255, 139, 152)")){ // Lean R --> Likely R
@@ -207,6 +439,39 @@ function initAll(){
 
       likRepSum += parseInt(this.getAttribute('data-other'));
       likRepSumObj.innerHTML = "<div id=\"likRepSum\">likely GOP: " + likRepSum + "</div>";
+
+        var leanRepPercentage = leanRepSum > 0 ? leanRepSum/totalElectoralVotes : 0;
+    var likRepPercentage = likRepSum > 0 ? likRepSum/totalElectoralVotes : 0;
+    var solRepPercentage = solRepSum > 0 ? solRepSum/totalElectoralVotes : 0;
+    var leanDemPercentage = leanDemSum > 0 ? leanDemSum/totalElectoralVotes : 0;
+    var likDemPercentage = likDemSum > 0 ? likDemSum/totalElectoralVotes : 0;
+    var solDemPercentage = solDemSum > 0 ? solDemSum/totalElectoralVotes : 0;
+    var tossupPercentage = tossupSum > 0 ? tossupSum/totalElectoralVotes : 0;
+
+    var leanRepBar = document.getElementsByClassName("lean-rep-bar");
+    var likRepBar = document.getElementsByClassName("lik-rep-bar");
+    var solRepBar = document.getElementsByClassName("sol-rep-bar");
+    var leanDemBar = document.getElementsByClassName("lean-dem-bar");
+    var likDemBar = document.getElementsByClassName("lik-dem-bar");
+    var solDemBar = document.getElementsByClassName("sol-dem-bar");
+    var tossupBar = document.getElementsByClassName("tossup-bar");
+
+    $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+    $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
+    $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
+    $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
+    $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%");
+    $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%");
+    $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%");
+
+    $(leanRepBar).html(leanRepSum);  
+    $(likRepBar).html(likRepSum);  
+    $(solRepBar).html(solRepSum);  
+    $(leanDemBar).html(leanDemSum);  
+    $(likDemBar).html(likDemSum);  
+    $(solDemBar).html(solDemSum);  
+    $(tossupBar).html(tossupSum);  
+
     } 
   });
 }

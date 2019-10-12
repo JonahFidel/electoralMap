@@ -39,10 +39,17 @@ h1 {
 
 /*can probably do all of this from the js side*/
 .votes-bar {
+  text-align: center;
+    margin: 20px auto;
+    margin-bottom: 15px;
   border: 4px solid black;
   display: block;
   display: table;
   width: 100%;
+  max-width: 60%;
+  align-content: center;
+  align-items: center;
+  float: center;
 }
 
 .lean-dem-bar {
