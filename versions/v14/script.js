@@ -270,7 +270,7 @@ function initAll(){
     var tossupBar = document.getElementsByClassName("tossup-bar");
 
    if (leanRepPercentage > 0) {
-      $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+      $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%")
     }  else {
       $(leanRepBar).css("display", "none");
     }
