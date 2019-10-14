@@ -1,6 +1,12 @@
 
 h1 {
-  font-size: 36px;
+  font-size: 48px;
+  text-align: center;
+  float:center;
+}
+
+.subtitle {
+  font-size: 24px;
   text-align: center;
   float:center;
 }
@@ -50,8 +56,8 @@ h1 {
   max-width: 60%;
   align-content: center;
   align-items: center;
-  float: center;
-}
+  float: center
+  }
 
 .lean-dem-bar {
   width: 15%; 
