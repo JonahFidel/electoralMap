@@ -62,9 +62,6 @@ function initAll(){
   var likDemSum = 0; 
   var solDemSum = 0;
 
-  var kentucky = objDoc.getElementById('KY');
-  d3.select(kentucky).style('fill', colorsArray["lean_d"]);
-
   statesArray.forEach(function(state){
     var currState = objDoc.getElementById(state);
     var myNewDiv = document.createElement('div')  
@@ -129,8 +126,6 @@ function initAll(){
     $(likDemBar).html(likDemSum);  
     $(solDemBar).html(solDemSum);  
     $(tossupBar).html(tossupSum);  
-
-    // console.log(initialColor);
     d3.select(currState).style('fill', colorsArray[initialColor]);
     var element = d3.select(currState).node();
     var bbox = element.getBBox();
@@ -161,15 +156,11 @@ function initAll(){
   $(document.body).append("<div id=\"likDemSum\">likely DEM: " + likDemSum + "</div>");
   $(document.body).append("<div id=\"solDemSum\">solid DEM: " + solDemSum + "</div>");
   $(document.body).append("<div id=\"tossup\">tossup: " + tossupSum + "</div>");
-  
+
   var myPath = $(myMap).find("path, circle");
 
   $(myPath).click(function(e){
-    console.log($(this).data('color'));
-    console.log(tinycolor.equals(this.style.fill, "rgb(255, 88, 101)"));
-
     var currStateColor = this.style.fill;
-    console.log(currStateColor);
     demSumObj = document.getElementById("demSum");
     repSumObj = document.getElementById("repSum");
     leanDemSumObj = document.getElementById("leanDemSum");
@@ -180,9 +171,7 @@ function initAll(){
     solRepSumObj = document.getElementById("solRepSum");
     tossupObj = document.getElementById("tossup");
 
-
     // TODO: clean this up  
-    // too much redundant code
     // should implement shared function for this and init too with counting EVs
     // dash case for IDs
     if (tinycolor.equals(currStateColor, "rgb(255, 88, 101)")){ // Likely R --> Safe R
@@ -202,13 +191,13 @@ function initAll(){
       repSum -= parseInt(this.getAttribute('data-other'));
       solRepSum -= parseInt(this.getAttribute('data-other'));
 
-      repSumObj.innerHTML = "<div id=\"repSum\">GOP: " + repSum + "</div>";
+      repSumObj.textContent = "GOP: " + repSum;
       solRepSumObj.innerHTML = "<div id=\"solRepSum\">solid GOP: " + solRepSum + "</div>";
 
       demSum += parseInt(this.getAttribute('data-other'));
       solDemSum += parseInt(this.getAttribute('data-other'));
 
-      demSumObj.innerHTML = "<div id=\"demSum\">DEM: " + demSum + "</div>";
+      demSumObj.textContent = "DEM: " + demSum;
       solDemSumObj.innerHTML = "<div id=\"solDemSum\">solid DEM: " + solDemSum + "</div>";
       
       barAction();
@@ -237,7 +226,7 @@ function initAll(){
     else if (tinycolor.equals(currStateColor, "rgb(138, 175, 255)")){ // Lean D --> Tossup
       this.style.fill = "#9E8767";
       demSum -= parseInt(this.getAttribute('data-other'));
-      demSumObj.innerHTML = "<div id=\"demSum\">DEM: " + demSum + "</div>";
+      demSumObj.textContent = "DEM: " + demSum;
 
       tossupSum += parseInt(this.getAttribute('data-other'));
       tossupObj.innerHTML = "<div id=\"tossupSum\">tossup: " + tossupSum + "</div>";
@@ -250,7 +239,7 @@ function initAll(){
     else if (tinycolor.equals(currStateColor, "rgb(158, 135, 103)")){ // Tossup --> Lean R
       this.style.fill = "#FF8B98";
       repSum += parseInt(this.getAttribute('data-other'));
-      repSumObj.innerHTML = "<div id=\"repSum\">GOP: " + repSum + "</div>";
+      repSumObj.textContent = "GOP: " + repSum;
 
       tossupSum -= parseInt(this.getAttribute('data-other'));
       tossupObj.innerHTML = "<div id=\"tossupSum\">tossup: " + tossupSum + "</div>";
@@ -290,11 +279,6 @@ function barAction(){
  var likDemBar = document.getElementsByClassName("lik-dem-bar");
  var solDemBar = document.getElementsByClassName("sol-dem-bar");
  var tossupBar = document.getElementsByClassName("tossup-bar");
-
-
-    // this works, need to do it for the rest of them... going to clean up the rest of the code first 
-    // IMPORTANT
-    // need to also flip the display back on when the sum goes above zero again
 
     if (leanRepPercentage > 0) {
       $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
