@@ -160,6 +160,7 @@ function initAll(){
   var myPath = $(myMap).find("path, circle");
 
   $(myPath).click(function(e){
+    var subtitle = document.getElementsByClassName("subtitle");
     var currStateColor = this.style.fill;
     demSumObj = document.getElementById("demSum");
     repSumObj = document.getElementById("repSum");
@@ -261,6 +262,19 @@ function initAll(){
 
       barAction();
   } 
+
+    if(demSum >= 270){
+      subtitle[0].childNodes[0].textContent = "DEM WINS";
+      $(subtitle).css("color", "blue");
+    }
+    else if (repSum >= 270){
+      subtitle[0].childNodes[0].textContent = "REP WINS";
+      $(subtitle).css("color", "red");
+    }
+    else {
+      subtitle[0].childNodes[0].textContent = "United States of America";
+      $(subtitle).css("color", "black");
+    }
 });
 
 function barAction(){
