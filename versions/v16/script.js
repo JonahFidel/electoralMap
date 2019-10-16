@@ -264,11 +264,11 @@ function initAll(){
   } 
 
     if(demSum >= 270){
-      subtitle[0].childNodes[0].textContent = "Democrat Wins!!!";
+      subtitle[0].childNodes[0].textContent = "DEM WINS";
       $(subtitle).css("color", "blue");
     }
     else if (repSum >= 270){
-      subtitle[0].childNodes[0].textContent = "Republican Wins =(";
+      subtitle[0].childNodes[0].textContent = "REP WINS";
       $(subtitle).css("color", "red");
     }
     else {

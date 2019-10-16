@@ -1,0 +1,124 @@
+
+h1 {
+  font-size: 48px;
+  text-align: center;
+  float:center;
+}
+
+.subtitle {
+  font-size: 24px;
+  text-align: center;
+  float:center;
+}
+
+#info-box {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  background-color: #ffffff;
+  border: 2px solid #BF0A30;
+  border-radius: 5px;
+  padding: 5px;
+  font-family: arial;
+}
+
+#map {
+  position: relative;
+  margin: 0 auto;
+  width: 1000px;
+  height: 600px;
+  float:center;
+  display: block;
+}
+
+#demSum {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  font-size: 36px;
+}
+
+#repSum {
+  position: absolute;
+  top: 100px;
+  right: 100px;
+  font-size: 36px;
+}
+
+
+#leanRepSum, #likRepSum, #solRepSum, #leanDemSum, #likDemSum, #solDemSum, #tossup {
+  text-align: center;
+  float:center;
+  margin: 0 auto;
+  font-size: 12px;
+  display: block;
+  float: left;
+  clear: both;
+  display: none;
+}
+
+/*can probably do all of this from the js side*/
+.votes-bar {
+  text-align: center;
+    margin: 20px auto;
+    margin-bottom: 15px;
+  border: 4px solid black;
+  display: block;
+  display: table;
+  width: 100%;
+  max-width: 60%;
+  align-content: center;
+  align-items: center;
+  float: center
+  }
+
+.lean-dem-bar {
+  width: 15%; 
+  background-color: #8AAFFF;
+  height: 20px;
+  display: table-cell;
+}
+
+.lik-dem-bar {
+  width: 15%; 
+  background-color: #577CCC;
+  height: 20px;
+  display: table-cell;
+}
+
+.sol-dem-bar {
+  width: 15%; 
+  background-color: #244999;
+  height: 20px;
+  display: table-cell;
+}
+
+ .lean-rep-bar {
+  width: 15%; 
+  background-color: #FF8B98;
+  height: 20px;
+  display: table-cell;
+}
+
+.lik-rep-bar {
+  width: 15%; 
+  background-color: #FF5865;
+  height: 20px;
+  display: table-cell;
+}
+
+.sol-rep-bar {
+  width: 15%; 
+  background-color: #D22532;
+  height: 20px;
+  display: table-cell;
+}
+
+.tossup-bar {
+  width: 15%; 
+  background-color: #9E8767;
+  height: 20px;
+  display: table-cell;
+}
