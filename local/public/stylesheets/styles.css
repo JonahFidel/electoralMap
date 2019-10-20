@@ -6,16 +6,53 @@ h1 {
   margin: 10px auto;
 }
 
+.solid-gop {background: #D22532;}
+.likely-gop {background: #FF5865;}
+.lean-gop {background: #FF8B98;}
+.tossup {background: #9E8767;}
+.lean-dem {background: #8AAFFF;}
+.likely-dem {background: #577CCC;}
+.solid-dem {background: #244999;}
+
+.key-color-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
 .key {
   position: absolute;
-  bottom: 70px;
-  right: 180px;
+  bottom: -100px;
+  right: 130px;
+  border: 2px solid black;
+  padding: 20px;
+}
+
+.key-title {
+  margin-bottom: 5px;
+}
+
+.key-item {
+  margin: 0 auto;
 }
 
 .info {
   font-size: 16px;
   text-align: center;
-  margin: 10px auto;
+  margin-top: 10px;
+}
+
+.mid-info {
+  font-size: 16px;
+  text-align: center;
+}
+
+.sub-info {
+   font-size: 16px;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 10px;
 }
 
 .subtitle {
