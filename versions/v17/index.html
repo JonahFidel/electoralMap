@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Electoral College</title>
+  <link rel="stylesheet" type="text/css" href="public/stylesheets/styles.css" />
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.1/tinycolor.min.js"></script>
+<!--   <script src="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+ -->  <script src="script.js"></script>
+</head>
+<body>
+  <h1>Electoral College</h1>
+  <div class="subtitle">United States of America</div>
+  <div class="info">Click on the states to create your own electoral map!</div>
+  <div class="mid-info">Starting map is 2020 projection based on consensus of electoral models</div>
+  <div class="sub-info">All number values correspond to Electoral Votes - 270 votes needed to win!</div>
+  <div class="votes-bar">
+    <div class="sol-dem-bar"></div>
+    <div class="lik-dem-bar"></div>
+    <div class="lean-dem-bar"></div>
+    <div class="tossup-bar"></div>
+    <div class="lean-rep-bar"></div>
+    <div class="lik-rep-bar"></div>
+    <div class="sol-rep-bar"></div>
+  </div>
+  <div class="key">
+    <div class="key-title">Key:</div>    
+    <div class="key-item"><div class="key-color-box solid-gop"></div> - Solid GOP</div>
+    <div class="key-item"><div class="key-color-box likely-gop"></div> - Likely GOP</div>
+    <div class="key-item"><div class="key-color-box lean-gop"></div> - Lean GOP</div>
+    <div class="key-item"><div class="key-color-box tossup"></div> - Tossup</div>
+    <div class="key-item"><div class="key-color-box lean-dem"></div> - Lean Dem</div>
+    <div class="key-item"><div class="key-color-box likely-dem"></div> - Likely Dem</div>
+    <div class="key-item"><div class="key-color-box solid-dem"></div> - Solid Dem</div>
+  </div>
+  <!-- <label for="pet-select">Choose a pet:</label>
+
+  <select id="pet-select">
+    <option value="">--Please choose an option--</option>
+    <option value="dog">Dog</option>
+    <option value="cat">Cat</option>
+    <option value="hamster">Hamster</option>
+    <option value="parrot">Parrot</option>
+    <option value="spider">Spider</option>
+    <option value="goldfish">Goldfish</option>
+  </select> -->
+
+  <object type="image/svg+xml" data="public/map.svg" id="map">
+  </object>
+</body>
+</html>
+
+

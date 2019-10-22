@@ -15,8 +15,6 @@
 
 // State abbreviations + DC 
 var statesArray = ["AK", "HI", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY", "DC2"];
-// see commented block at line 127
-var floatingStates = ["MA", "CT", "RI", "NJ", "DE", "MD", "DC2"];
 
 // so many blues and reds
 var colorsArray = {
@@ -123,9 +121,7 @@ function initAll(){
     var element = d3.select(currState).node();
     var bbox = element.getBBox();
 
-    // placing the state names on the map
-    // if (!floatingStates.includes(currState.id)){
-      $(foreignObject)
+    $(foreignObject)
     .attr("x", (bbox.x + bbox.width/2 - 15))
       // .attr("x", function(d){
       //   return statePath.centroid(d)[0];
@@ -135,7 +131,6 @@ function initAll(){
       //   return statePath.centroid(d)[1];
       // })
       .attr("width", 30).attr("height", 50).append(body);
-    // }
 
       $(body).append("<div>"+ state + "<br>" + EV + "</div>");
       $(foreignObject).attr("id", "stateName");
@@ -208,7 +203,7 @@ function initAll(){
       likDemSumObj.innerHTML = "<div id=\"likDemSum\">likely DEM: " + likDemSum + "</div>";
 
       barAction();
-    } 
+  } 
 
     else if (tinycolor.equals(currStateColor, "rgb(87, 124, 204)")){ // Likely D --> Lean D
       this.style.fill = "#8AAFFF";
@@ -218,7 +213,7 @@ function initAll(){
       leanDemSum += parseInt(this.getAttribute('data-other'));
       leanDemSumObj.innerHTML = "<div id=\"leanDemSum\">lean DEM: " + leanDemSum + "</div>";
       barAction();
-    } 
+  } 
 
     else if (tinycolor.equals(currStateColor, "rgb(138, 175, 255)")){ // Lean D --> Tossup
       this.style.fill = "#9E8767";
@@ -231,7 +226,7 @@ function initAll(){
       leanDemSum -= parseInt(this.getAttribute('data-other'));
       leanDemSumObj.innerHTML = "<div id=\"leanDemSum\">lean DEM: " + leanDemSum + "</div>";
       barAction();
-    } 
+  } 
 
     else if (tinycolor.equals(currStateColor, "rgb(158, 135, 103)")){ // Tossup --> Lean R
       this.style.fill = "#FF8B98";
@@ -245,7 +240,7 @@ function initAll(){
       leanRepSumObj.innerHTML = "<div id=\"leanRepSum\">lean GOP: " + leanRepSum + "</div>";
       barAction();
 
-    } 
+  } 
 
     else if (tinycolor.equals(currStateColor, "rgb(255, 139, 152)")){ // Lean R --> Likely R
       this.style.fill = "#FF5865";
@@ -257,7 +252,7 @@ function initAll(){
       likRepSumObj.innerHTML = "<div id=\"likRepSum\">likely GOP: " + likRepSum + "</div>";
 
       barAction();
-    } 
+  } 
 
     if(demSum >= 270){
       subtitle[0].childNodes[0].textContent = "Democrat Wins!!!";
@@ -271,7 +266,7 @@ function initAll(){
       subtitle[0].childNodes[0].textContent = "United States of America";
       $(subtitle).css("color", "black");
     }
-  });
+});
 
 function barAction(){
  var leanRepPercentage = leanRepSum > 0 ? leanRepSum/totalElectoralVotes : 0;
@@ -290,61 +285,61 @@ function barAction(){
  var solDemBar = document.getElementsByClassName("sol-dem-bar");
  var tossupBar = document.getElementsByClassName("tossup-bar");
 
- if (leanRepPercentage > 0) {
-  $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
-  $(leanRepBar).show();
-}  else {
-  $(leanRepBar).hide();
-}
+    if (leanRepPercentage > 0) {
+      $(leanRepBar).css("width", leanRepPercentage.toFixed(2) + "%");
+      $(leanRepBar).show();
+    }  else {
+      $(leanRepBar).hide();
+    }
 
-if (likRepPercentage > 0) {
-  $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
-  $(likRepBar).show();
-}  else {
-  $(likRepBar).hide();
-}
+    if (likRepPercentage > 0) {
+      $(likRepBar).css("width", likRepPercentage.toFixed(2) + "%");
+      $(likRepBar).show();
+    }  else {
+      $(likRepBar).hide();
+    }
 
-if (solRepPercentage > 0) {
-  $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
-  $(solRepBar).show();
-}  else {
-  $(solRepBar).hide();
-}
+    if (solRepPercentage > 0) {
+      $(solRepBar).css("width", solRepPercentage.toFixed(2) + "%");
+      $(solRepBar).show();
+    }  else {
+      $(solRepBar).hide();
+    }
+    
+    if (leanDemPercentage > 0) {
+      $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
+      $(leanDemBar).show();
+    }  else {
+      $(leanDemBar).hide();
+    }
 
-if (leanDemPercentage > 0) {
-  $(leanDemBar).css("width", leanDemPercentage.toFixed(2) + "%");
-  $(leanDemBar).show();
-}  else {
-  $(leanDemBar).hide();
-}
+    if (likDemPercentage > 0) {
+      $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%");
+      $(likDemBar).show();
+    }  else {
+      $(likDemBar).hide();
+    }
 
-if (likDemPercentage > 0) {
-  $(likDemBar).css("width", likDemPercentage.toFixed(2) + "%");
-  $(likDemBar).show();
-}  else {
-  $(likDemBar).hide();
-}
+    if (solDemPercentage > 0) {
+      $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%");
+      $(solDemBar).show();
+    }  else {
+      $(solDemBar).hide();
+    }
 
-if (solDemPercentage > 0) {
-  $(solDemBar).css("width", solDemPercentage.toFixed(2) + "%");
-  $(solDemBar).show();
-}  else {
-  $(solDemBar).hide();
-}
+    if (tossupPercentage > 0) {
+      $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%");
+      $(tossupBar).show();
+    }  else {
+      $(tossupBar).hide();
+    }
 
-if (tossupPercentage > 0) {
-  $(tossupBar).css("width", tossupPercentage.toFixed(2) + "%");
-  $(tossupBar).show();
-}  else {
-  $(tossupBar).hide();
-}
-
-$(leanRepBar).html(leanRepSum);  
-$(likRepBar).html(likRepSum);  
-$(solRepBar).html(solRepSum);  
-$(leanDemBar).html(leanDemSum);  
-$(likDemBar).html(likDemSum);  
-$(solDemBar).html(solDemSum);  
-$(tossupBar).html(tossupSum);  
-}
+    $(leanRepBar).html(leanRepSum);  
+    $(likRepBar).html(likRepSum);  
+    $(solRepBar).html(solRepSum);  
+    $(leanDemBar).html(leanDemSum);  
+    $(likDemBar).html(likDemSum);  
+    $(solDemBar).html(solDemSum);  
+    $(tossupBar).html(tossupSum);  
+  }
 }
