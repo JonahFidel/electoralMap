@@ -47,6 +47,8 @@ function initAll(){
   var objDoc = obj.contentDocument;
   var demSum = 0;
   var repSum = 0;
+  var popRepSum = 0;
+  var popDemSum = 0;
   var leanRepSum = 0;
   var likRepSum = 0; 
   var solRepSum = 0;
@@ -64,30 +66,38 @@ function initAll(){
     var EV = $(statePath).data("other");
     var initialColor = $(statePath).data("color")
     var voteCount = parseInt($(currState).data('other'), 10);
+    var popCount = parseInt($(currState).data('pop'), 10);
 
     // TODO - get rid of redundant code
     if (initialColor == "likely_r"){ // Likely R 
       repSum += voteCount;
       likRepSum += voteCount;
+      popRepSum += popCount;
     } else if (initialColor == "safe_r"){ // Safe R  
       repSum += voteCount;
       solRepSum += voteCount;
+      popRepSum += popCount;
     } else if (initialColor == "safe_d"){ // Safe D 
       demSum += voteCount;
       solDemSum += voteCount;
+      popDemSum += popCount;
     } else if (initialColor == "likely_d"){ // Likely D 
       demSum += voteCount;
       likDemSum += voteCount;
+      popDemSum += popCount;
     } else if (initialColor == "lean_d"){ // Lean D 
       demSum += voteCount;
       leanDemSum += voteCount;
+      popDemSum += popCount;
     } else if (initialColor == "lean_r"){ // Lean R 
       repSum += voteCount;
       leanRepSum += voteCount;
+      popRepSum += popCount;
     } else {
       tossupSum += voteCount;
     }
-
+    
+    
     var leanRepPercentage = leanRepSum > 0 ? leanRepSum/totalElectoralVotes : 0;
     var likRepPercentage = likRepSum > 0 ? likRepSum/totalElectoralVotes : 0;
     var solRepPercentage = solRepSum > 0 ? solRepSum/totalElectoralVotes : 0;
@@ -142,9 +152,17 @@ function initAll(){
       $(svg).append(foreignObject);
       sum += parseInt($(currState).data('other'), 10);
     });
+  
+  //checkin population totals for testing
+  console.log("population dems = " + popDemSum);
+  console.log("pop republicans = " + popRepSum);
 
   $(document.body).append("<div id=\"demSum\">DEM: " + demSum + "</div>");
   $(document.body).append("<div id=\"repSum\">GOP: " + repSum + "</div>");
+  
+  $(document.body).append("<div id=\"popDemSum\">Representing " + popDemSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " citizens</div>");
+  $(document.body).append("<div id=\"popRepSum\">Representing " + popRepSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " citizens</div>");
+  
   $(document.body).append("<div id=\"leanRepSum\">lean GOP: " + leanRepSum + "</div>");
   $(document.body).append("<div id=\"likRepSum\">likely GOP: " + likRepSum + "</div>");
   $(document.body).append("<div id=\"solRepSum\">solid GOP: " + solRepSum + "</div>");
@@ -167,6 +185,8 @@ function initAll(){
     likRepSumObj = document.getElementById("likRepSum");
     solRepSumObj = document.getElementById("solRepSum");
     tossupObj = document.getElementById("tossup");
+    popDemSumObj = document.getElementById("popDemSum");
+    popRepSumObj = document.getElementById("popRepSum");
 
     // TODO: clean this up  
     // should implement shared function for this and init too with counting EVs
@@ -185,17 +205,21 @@ function initAll(){
     else if (tinycolor.equals(currStateColor, "rgb(210, 37, 50)")){ // Safe R --> Safe D 
       this.style.fill = "#244999";
 
-      repSum -= parseInt(this.getAttribute('data-other'));
+      repSum -= parseInt(this.getAttribute('data-other'));   
       solRepSum -= parseInt(this.getAttribute('data-other'));
-
       repSumObj.textContent = "GOP: " + repSum;
       solRepSumObj.innerHTML = "<div id=\"solRepSum\">solid GOP: " + solRepSum + "</div>";
 
       demSum += parseInt(this.getAttribute('data-other'));
+      
       solDemSum += parseInt(this.getAttribute('data-other'));
-
       demSumObj.textContent = "DEM: " + demSum;
       solDemSumObj.innerHTML = "<div id=\"solDemSum\">solid DEM: " + solDemSum + "</div>";
+      
+      popDemSum += parseInt(this.getAttribute('data-pop'));
+      popRepSum -= parseInt(this.getAttribute('data-pop'));
+      popDemSumObj.textContent = "Representing " + popDemSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " citizens";
+      popRepSumObj.textContent = "Representing " + popRepSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " citizens";
       
       barAction();
     } 
@@ -230,6 +254,12 @@ function initAll(){
 
       leanDemSum -= parseInt(this.getAttribute('data-other'));
       leanDemSumObj.innerHTML = "<div id=\"leanDemSum\">lean DEM: " + leanDemSum + "</div>";
+      
+      popDemSum -= parseInt(this.getAttribute('data-pop'));
+      popRepSum += parseInt(this.getAttribute('data-pop'));
+      popDemSumObj.textContent = "Representing " + popDemSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " citizens";
+      popRepSumObj.textContent = "Representing " + popRepSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " citizens";
+      
       barAction();
     } 
 
@@ -244,6 +274,10 @@ function initAll(){
       leanRepSum += parseInt(this.getAttribute('data-other'));
       leanRepSumObj.innerHTML = "<div id=\"leanRepSum\">lean GOP: " + leanRepSum + "</div>";
       barAction();
+      
+      
+      popRepSum += parseInt(this.getAttribute('data-pop'));
+      popRepSumObj.textContent = "Representing " + popRepSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " citizens";
 
     } 
 
@@ -264,7 +298,7 @@ function initAll(){
       $(subtitle).css("color", "blue");
     }
     else if (repSum >= 270){
-      subtitle[0].childNodes[0].textContent = "Republican Wins =(";
+      subtitle[0].childNodes[0].textContent = "Republican Wins :(";
       $(subtitle).css("color", "red");
     }
     else {
