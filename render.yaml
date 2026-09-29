@@ -1,0 +1,8 @@
+# Publish the runnable app in local/. There is no compile step.
+# The build command must be a non-empty string; bare YAML true is a boolean.
+services:
+  - type: web
+    name: jonahfidel-electoral-map
+    runtime: static
+    buildCommand: "true"
+    staticPublishPath: ./local
